@@ -45,7 +45,7 @@ A Kubernetes monitoring stack using **Prometheus** & **Grafana**, deployed with 
    | (Dashboards &    |
    |   Visualizations)|
    +------------------+
-
+```
 # 🛠️ Installation & Configurations
 
 ### 📦 Step 1: Create EKS Cluster
