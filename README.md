@@ -19,18 +19,32 @@ A Kubernetes monitoring stack using **Prometheus** & **Grafana**, deployed with 
 ---
 
 ## 🏗️ Architecture
-## 🏗️ Architecture
 
-```mermaid
-flowchart TD
-    subgraph K8S["Kubernetes Cluster"]
-        A[Nodes / Pods / Services]
-    end
-
-    A --> B[Exporters<br/>(Node Exporter, kube-state-metrics, App Exporters)]
-    B --> C[Prometheus<br/>(Scrapes & Stores Metrics)]
-    C --> D[Grafana<br/>(Dashboards & Visualization)]
-
+```text
++--------------------------+
+|   Kubernetes Cluster     |
+| (Nodes, Pods, Services)  |
++------------+-------------+
+             |
+             v
+   +------------------+
+   |   Exporters      |  (Node Exporter, kube-state-metrics,
+   |   App Metrics    |   Custom App Exporters)
+   +--------+---------+
+             |
+             v
+   +------------------+
+   |   Prometheus     |
+   | (Scrapes & Stores|
+   |   Time Series)   |
+   +--------+---------+
+             |
+             v
+   +------------------+
+   |    Grafana       |
+   | (Dashboards &    |
+   |   Visualizations)|
+   +------------------+
 
 # 🛠️ Installation & Configurations
 
