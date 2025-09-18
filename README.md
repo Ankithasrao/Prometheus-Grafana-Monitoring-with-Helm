@@ -71,21 +71,21 @@ helm install monitoring prometheus-community/kube-prometheus-stack \
 helm install prometheus prometheus-community/prometheus
 ```
 ##### The output of the kubectl get pods :  
-
+```bash
 ankitha@ankitha:~$ kubectl get pods
-NAME                                                 READY   STATUS              RESTARTS   AGE
-prometheus-alertmanager-0                            1/1     Running             0          59s
-prometheus-kube-state-metrics-5f64969966-6tx24       1/1     Running             0          60s
-prometheus-prometheus-node-exporter-skx49            1/1     Running             0          61s
-prometheus-prometheus-pushgateway-65bc997fdf-rc46l   1/1     Running             0          60s
-prometheus-server-9c64d4bf4-cb9zm                    2/2     Running             0          60s
-
+NAME                                           READY   STATUS    RESTARTS   AGE
+prometheus-alertmanager-0                      1/1     Running   0          59s
+prometheus-kube-state-metrics-5f64969966-6tx24 1/1     Running   0          60s
+prometheus-prometheus-node-exporter-skx49      1/1     Running   0          61s
+prometheus-prometheus-pushgateway-65bc997fdf-rc46l 1/1 Running   0          60s
+prometheus-server-9c64d4bf4-cb9zm              2/2     Running   0          60s
+```
 #### 🛠️ Step 5 : Exposing the Prometheus-server service on Kubernetes
 ```
 kubectl expose service prometheus-server --type=NodePort --target-port=9090 --name=prometheus-server-ext
 ```
 ##### The output of the kubectl get svc :
-
+```bash
 ankitha@ankitha:~$ kubectl get svc
 NAME                                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
 kubernetes                            ClusterIP   10.96.0.1        <none>        443/TCP        20h
@@ -96,6 +96,7 @@ prometheus-prometheus-node-exporter   ClusterIP   10.98.206.69     <none>       
 prometheus-prometheus-pushgateway     ClusterIP   10.99.196.97     <none>        9091/TCP       5h30m
 prometheus-server                     ClusterIP   10.106.132.250   <none>        80/TCP         5h30m
 prometheus-server-ext                 NodePort    10.96.142.233    <none>        80:32181/TCP   3s
+```
 
 ##### Our Prometheus web UI is available now, With the installation of Prometheus on Kubernetes via Helm, the Prometheus instance is now operational within the cluster, and we can reach it by navigating to a browser or using a specific URL.
 
@@ -115,18 +116,20 @@ helm install grafana grafana/grafana
 kubectl expose service grafana --type=NodePort --target-port=3000 --name=grafana-ext
 ```
 ##### The output of the kubectl get svc :
+```bash
 ankitha@ankitha:~$ kubectl get svc
-NAME                                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
-grafana                               ClusterIP   10.110.238.0     <none>        80/TCP         2m7s
-grafana-ext                           NodePort    10.107.35.57     <none>        80:32434/TCP   5s
-kubernetes                            ClusterIP   10.96.0.1        <none>        443/TCP        20h
-prometheus-alertmanager               ClusterIP   10.107.38.209    <none>        9093/TCP       5h48m
-prometheus-alertmanager-headless      ClusterIP   None             <none>        9093/TCP       5h48m
-prometheus-kube-state-metrics         ClusterIP   10.99.24.251     <none>        8080/TCP       5h48m
-prometheus-prometheus-node-exporter   ClusterIP   10.98.206.69     <none>        9100/TCP       5h48m
-prometheus-prometheus-pushgateway     ClusterIP   10.99.196.97     <none>        9091/TCP       5h48m
-prometheus-server                     ClusterIP   10.106.132.250   <none>        80/TCP         5h48m
-prometheus-server-ext                 NodePort    10.96.142.233    <none>        80:32181/TCP   17m
+NAME                                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+grafana                              ClusterIP   10.110.238.0    <none>        80/TCP           2m7s
+grafana-ext                          NodePort    10.107.35.57    <none>        80:32434/TCP     5s
+kubernetes                           ClusterIP   10.96.0.1       <none>        443/TCP          20h
+prometheus-alertmanager              ClusterIP   10.107.38.209   <none>        9093/TCP         5h48m
+prometheus-alertmanager-headless     ClusterIP   None            <none>        9093/TCP         5h48m
+prometheus-kube-state-metrics        ClusterIP   10.99.24.251    <none>        8080/TCP         5h48m
+prometheus-prometheus-node-exporter  ClusterIP   10.98.206.69    <none>        9100/TCP         5h48m
+prometheus-prometheus-pushgateway    ClusterIP   10.99.196.97    <none>        9091/TCP         5h48m
+prometheus-server                    ClusterIP   10.106.132.250  <none>        80/TCP           5h48m
+prometheus-server-ext                NodePort    10.96.142.233   <none>        80:32181/TCP     17m
+```
 
 ##### Our Garafana web UI is available now, and we can reach it by navigating to a browser or using a specific URL.
 
@@ -145,7 +148,7 @@ kubectl get secret --namespace default grafana -o jsonpath="{.data.admin-passwor
 
 <img width="1635" height="630" alt="image" src="https://github.com/user-attachments/assets/20047ba3-daa6-4744-9299-790e9030fc20" />
 
-Include the internal cluster URL of your Prometheus application by referring to the initial URL displayed when executing the ‘minikube service prometheus-server-ext’ command earlier.
+Include the Prometheus URL from the browser.
 
 <img width="1917" height="769" alt="image" src="https://github.com/user-attachments/assets/07dbd291-7e5f-4a70-9975-f806a8b899e8" />
 
