@@ -80,7 +80,7 @@ prometheus-prometheus-node-exporter-skx49      1/1     Running   0          61s
 prometheus-prometheus-pushgateway-65bc997fdf-rc46l 1/1 Running   0          60s
 prometheus-server-9c64d4bf4-cb9zm              2/2     Running   0          60s
 ```
-#### 🛠️ Step 5 : Exposing the Prometheus-server service on Kubernetes
+### 🛠️ Step 5 : Exposing the Prometheus-server service on Kubernetes
 ```
 kubectl expose service prometheus-server --type=NodePort --target-port=9090 --name=prometheus-server-ext
 ```
@@ -158,6 +158,7 @@ Click on ‘Save and Next’.
 You have successfully added the Prometheus as Data source.
 
 <img width="1906" height="394" alt="image" src="https://github.com/user-attachments/assets/4aaad10d-8946-49ec-81b7-b5504c9b88b1" />
+
 
 ### ⚡Step 10 : Grafana Dashboard
 
