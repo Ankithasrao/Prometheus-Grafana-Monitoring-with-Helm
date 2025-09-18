@@ -50,7 +50,7 @@ A Kubernetes monitoring stack using **Prometheus** & **Grafana**, deployed with 
 
 ### 📦 Step 1 : Create EKS Cluster
 
-#### Kubernetes cluster (minikube, kind, EKS, GKE, AKS, etc.)
+###  Kubernetes cluster (minikube, kind, EKS, GKE, AKS, etc.)
 
 ### 🧰 Step 2 : Install kube-prometheus-stack
 ```
@@ -66,7 +66,7 @@ helm install monitoring prometheus-community/kube-prometheus-stack \
 -n monitoring \
 -f ./custom_kube_prometheus_stack.yml
 ```
-#### ✅ Step 4 : Install Prometheus Helm Chart on Kubernetes Cluster
+### ✅ Step 4 : Install Prometheus Helm Chart on Kubernetes Cluster
 ```
 helm install prometheus prometheus-community/prometheus
 ```
@@ -98,20 +98,20 @@ prometheus-server                     ClusterIP   10.106.132.250   <none>       
 prometheus-server-ext                 NodePort    10.96.142.233    <none>        80:32181/TCP   3s
 ```
 
-##### Our Prometheus web UI is available now, With the installation of Prometheus on Kubernetes via Helm, the Prometheus instance is now operational within the cluster, and we can reach it by navigating to a browser or using a specific URL.
+#### Our Prometheus web UI is available now, With the installation of Prometheus on Kubernetes via Helm, the Prometheus instance is now operational within the cluster, and we can reach it by navigating to a browser or using a specific URL.
 
 <img width="1127" height="665" alt="image" src="https://github.com/user-attachments/assets/c36e3087-8ce5-4d14-9797-d7efd4db588f" />
 
-#### ⚡Step 6 : Grafana Installation
+### ⚡Step 6 : Grafana Installation
 ```
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 ```
-#### 📈 Step 7 : Install Grafana Helm Chart on Kubernetes Cluster
+### 📈 Step 7 : Install Grafana Helm Chart on Kubernetes Cluster
 ```
 helm install grafana grafana/grafana
 ```
-#### 🧭 Step 8 : Exposing the Grafana service on Kubernetes
+### 🧭 Step 8 : Exposing the Grafana service on Kubernetes
 ```
 kubectl expose service grafana --type=NodePort --target-port=3000 --name=grafana-ext
 ```
@@ -131,19 +131,20 @@ prometheus-server                    ClusterIP   10.106.132.250  <none>        8
 prometheus-server-ext                NodePort    10.96.142.233   <none>        80:32181/TCP     17m
 ```
 
-##### Our Garafana web UI is available now, and we can reach it by navigating to a browser or using a specific URL.
+###  Our Garafana web UI is available now, and we can reach it by navigating to a browser or using a specific URL.
 
 <img width="1457" height="892" alt="image" src="https://github.com/user-attachments/assets/f6fc18c7-b631-4a4b-a835-6394b0d0a383" />
 
-##### To get the password for admin for the Grafana Login page, run the below command on a new terminal.
+#### To get the password for admin for the Grafana Login page, run the below command on a new terminal.
 ```
 kubectl get secret --namespace default grafana -o jsonpath="{.data.admin-password}" | ForEach-Object { [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_)) }
 ```
-#### 📊 Step 9 : Add Prometheus as data source
+### 📊 Step 9 : Add Prometheus as data source
 
-##### To add Prometheus as the data source, follow these steps:
+### To add Prometheus as the data source, follow these steps:
 
 * On the Welcome to Grafana Home page, click Add your first data source:
+  
 * Select Prometheus as the data source:
 
 <img width="1635" height="630" alt="image" src="https://github.com/user-attachments/assets/20047ba3-daa6-4744-9299-790e9030fc20" />
@@ -158,30 +159,45 @@ You have successfully added the Prometheus as Data source.
 
 <img width="1906" height="394" alt="image" src="https://github.com/user-attachments/assets/4aaad10d-8946-49ec-81b7-b5504c9b88b1" />
 
-#### ⚡ Step 10 : Grafana Dashboard
+### ⚡Step 10 : Grafana Dashboard
 
 In this section, our focus will be on importing a Grafana Dashboard to streamline the process.
 
-##### To import a Grafana Dashboard, follow these steps:
+#### To import a Grafana Dashboard, follow these steps:
 
-* Get the Grafana Dashboard ID from the - [![Grafana public Dashboard library](https://grafana.com/grafana/dashboards/)
+ ##### * Get the Grafana Dashboard ID from the - [![Grafana public Dashboard library](https://grafana.com/grafana/dashboards/)
+  
 <img width="1885" height="1000" alt="image" src="https://github.com/user-attachments/assets/b332e9f0-7174-44ab-84c0-9e5c8532dfe8" />
-* Now go to the search dashboard, and search for Kubernetes :
+
+ ##### * Now go to the search dashboard, and search for Kubernetes :
+  
   <img width="1011" height="781" alt="image" src="https://github.com/user-attachments/assets/44e9b79d-d027-4bc6-a257-7b846a4be5cc" />
-* Select Dashboard and copy the Dashboard ID:
+  
+ ##### * Select Dashboard and copy the Dashboard ID:
+ 
   <img width="1681" height="847" alt="image" src="https://github.com/user-attachments/assets/9a3036bf-5271-411f-9586-fc6314694535" />
-* Go back to the Grafana home, and go to the dashboard on left corner
+  
+ ##### * Go back to the Grafana home, and go to the dashboard on left corner
+ 
   <img width="1087" height="810" alt="image" src="https://github.com/user-attachments/assets/eac95a19-9990-4639-ba46-bb316ff8ffb3" />
-* Now click on the new->import
+  
+ ##### * Now click on the new->import
+ 
   <img width="1908" height="456" alt="image" src="https://github.com/user-attachments/assets/2b8d0ed6-3940-49b0-895e-c57584581e4c" />
-* Add the Grafana Id, and click on ‘Load’
+  
+ ##### * Add the Grafana Id, and click on ‘Load’
+ 
   <img width="1062" height="441" alt="image" src="https://github.com/user-attachments/assets/b8181fd4-7d99-408f-adb0-4b628544b87a" />
-* Select a Prometheus Data Source and Click Import
+  
+ ##### * Select a Prometheus Data Source and Click Import
+ 
   <img width="1180" height="664" alt="image" src="https://github.com/user-attachments/assets/b857cbd9-e376-48bc-9ff1-76d9a3cebd59" />
-* It will the launch the Dashboard shown below:
+  
+ ##### * It will the launch the Dashboard shown below:
+ 
   <img width="1909" height="946" alt="image" src="https://github.com/user-attachments/assets/a29228ea-89bc-4663-90cc-83f7883b508b" />
 
-##### You use this dashboard to monitor and observe the Kubernetes cluster metrics. It displays the following Kubernetes cluster metrics:
+##### Use this dashboard to monitor and observe the Kubernetes cluster metrics. It displays the following Kubernetes cluster metrics:
 * Network I/O pressure.
 * Cluster CPU usage.
 * Cluster Memory usage.
