@@ -198,7 +198,7 @@ In this section, our focus will be on importing a Grafana Dashboard to streamlin
  
   <img width="1909" height="946" alt="image" src="https://github.com/user-attachments/assets/a29228ea-89bc-4663-90cc-83f7883b508b" />
 
-##### Use this dashboard to monitor and observe the Kubernetes cluster metrics. It displays the following Kubernetes cluster metrics:
+### Use this dashboard to monitor and observe the Kubernetes cluster metrics. It displays the following Kubernetes cluster metrics:
 * Network I/O pressure.
 * Cluster CPU usage.
 * Cluster Memory usage.
